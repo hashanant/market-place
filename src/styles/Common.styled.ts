@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import styled from 'styled-components';
 
 const QuantityField = styled(Box)(() => ({
@@ -9,8 +9,14 @@ const QuantityField = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'center',
   borderRadius: 5,
-  border: '1px solid black',
-  cursor: 'pointer',
+  border: '1px solid darkgrey',
+  cursor: 'default',
 }));
 
-export { QuantityField };
+const ItemButton = styled(Button)<{ color: string }>(({ color }) => ({
+  size: 'medium',
+  color,
+  '& .Mui-disabled': { cursor: 'no-drop' },
+}));
+
+export { QuantityField, ItemButton };

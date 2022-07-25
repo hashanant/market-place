@@ -1,9 +1,20 @@
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Grid, Typography } from '@mui/material';
+import { useAppSelector } from '../../hooks/use.redux';
 import { QuantityField } from '../../styles/Common.styled';
 import { HeaderField } from './Home.Styled';
 
 const Home = () => {
+  const cartItemsList = useAppSelector(
+    (state: { cartItem: any }) => state.cartItem
+  );
+
+  console.log(
+    cartItemsList.cartItems,
+    cartItemsList.cartTotal,
+    cartItemsList.quantity
+  );
+
   const cartOpeningHandler = () => {
     console.log('clicked');
   };

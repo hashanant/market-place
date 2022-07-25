@@ -1,36 +1,31 @@
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import {
-  Button,
-  Card,
-  CardContent,
-  CardMedia,
-  Grid,
-  Typography,
-} from '@mui/material';
+import { Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import { useState } from 'react';
+import { useAppDispatch } from '../../hooks/use.redux';
+import { addItem, removeItem } from '../../store/cart.slice';
 import { IItems } from '../../types/itemType';
-import { QuantityField } from './ItemCard.Styled';
+import ItemCardActions from '../ItemCardActions';
 
-type props = { item: IItems };
+type TProps = { item: IItems };
 
-const ItemCard: React.FC<props> = (props) => {
-  const { id, name, description, image, price } = props.item;
-  const nf = new Intl.NumberFormat();
+const ItemCard: React.FC<TProps> = ({ item }) => {
+  const { id, name, description, image, price } = item;
 
+  const dispatch = useAppDispatch();
   const MIN: number = 0;
   const MAX: number = 5;
-  const [quantValue, setQuantVal] = useState<number>(MIN);
+  const [quant, setQuant] = useState<number>(MIN);
 
-  const onClickHandler = (action: string) => {
-    if (action === 'add' && quantValue < MAX) {
-      setQuantVal((prevVal) => {
+  const actionHandler = (action: string) => {
+    if (action === 'add' && quant < MAX) {
+      setQuant((prevVal) => {
         return prevVal + 1;
       });
-    } else if (action === 'remove' && quantValue > MIN) {
-      setQuantVal((prevVal) => {
+      dispatch(addItem({ id, name, price, qty: quant + 1 }));
+    } else if (action === 'remove' && quant > MIN) {
+      setQuant((prevVal) => {
         return prevVal - 1;
       });
+      dispatch(removeItem({ id, name, price, qty: quant - 1 }));
     }
   };
 
@@ -45,7 +40,7 @@ const ItemCard: React.FC<props> = (props) => {
           justifyContent='space-between'
         >
           <Grid item>
-            <Typography gutterBottom variant='h5' component='div'>
+            <Typography gutterBottom variant='h5'>
               {name}
             </Typography>
             <Typography gutterBottom variant='body2' color='text.secondary'>
@@ -53,42 +48,11 @@ const ItemCard: React.FC<props> = (props) => {
             </Typography>
           </Grid>
           <Grid item>
-            <Grid container display='flex' justifyContent='space-between'>
-              <Grid item>
-                <Typography variant='h6' fontWeight={600}>
-                  {'\u20B9 ' + nf.format(price)}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Grid container>
-                  <Button
-                    size='medium'
-                    color='error'
-                    variant='outlined'
-                    disabled={quantValue === MIN}
-                    sx={{ '&.Mui-disabled': { cursor: 'not-allowed' } }}
-                    onClick={() => {
-                      onClickHandler('remove');
-                    }}
-                  >
-                    <RemoveIcon />
-                  </Button>
-                  <QuantityField>{quantValue}</QuantityField>
-                  <Button
-                    size='medium'
-                    color='success'
-                    variant='outlined'
-                    disabled={quantValue === MAX}
-                    sx={{ '&.Mui-disabled': { cursor: 'not-allowed' } }}
-                    onClick={() => {
-                      onClickHandler('add');
-                    }}
-                  >
-                    <AddIcon />
-                  </Button>
-                </Grid>
-              </Grid>
-            </Grid>
+            <ItemCardActions
+              itemPrice={price}
+              value={quant}
+              callbackAction={actionHandler}
+            />
           </Grid>
         </Grid>
       </CardContent>
