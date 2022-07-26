@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ICartItem } from '../types/Common.types';
 
-type TCartItem = { id: string; name: string; price: number; qty: number };
-type IInitState = {
+type TInitState = {
   MIN: number;
   MAX: number;
-  cartItems: TCartItem[];
+  cartItems: ICartItem[];
   cartTotal: number;
   quantity: number;
 };
@@ -15,13 +15,13 @@ const initialState = {
   cartItems: [],
   cartTotal: 0,
   quantity: 0,
-} as IInitState;
+} as TInitState;
 
 const cartItemSlice = createSlice({
   name: 'cartItems',
   initialState,
   reducers: {
-    addItem(state, { payload }: PayloadAction<TCartItem>) {
+    addItem(state, { payload }: PayloadAction<ICartItem>) {
       const { id, price, qty } = payload;
       const index = state.cartItems.findIndex((e) => e.id === id);
       if (index < 0) {
@@ -32,7 +32,7 @@ const cartItemSlice = createSlice({
       state.cartTotal += price;
       state.quantity++;
     },
-    removeItem(state, { payload }: PayloadAction<TCartItem>) {
+    removeItem(state, { payload }: PayloadAction<ICartItem>) {
       const { id, price, qty } = payload;
       const index = state.cartItems.findIndex((e) => e.id === id);
       console.log(qty);

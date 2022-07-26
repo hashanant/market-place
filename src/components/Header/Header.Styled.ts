@@ -2,10 +2,9 @@ import { Grid } from '@mui/material';
 import styled from 'styled-components';
 
 const HeaderField = styled(Grid)(() => ({
-  padding: '20px 50px',
+  padding: '1.5% 5%',
   paddingBottom: '40px',
-  background: 'maroon',
-  color: 'moccasin',
+  background: '#222831',
 }));
 
 export { HeaderField };

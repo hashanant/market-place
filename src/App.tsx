@@ -1,13 +1,7 @@
-import Content from './components/Content';
 import Home from './components/Home';
 
 const App = () => {
-  return (
-    <>
-      <Home />
-      <Content />
-    </>
-  );
+  return <Home />;
 };
 
 export default App;

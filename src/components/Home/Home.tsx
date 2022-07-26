@@ -1,43 +1,23 @@
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import { Grid, Typography } from '@mui/material';
-import { useAppSelector } from '../../hooks/use.redux';
-import { QuantityField } from '../../styles/Common.styled';
-import { HeaderField } from './Home.Styled';
+import { Fragment, useState } from 'react';
+import Content from '../Content';
+import Header from '../Header';
 
 const Home = () => {
-  const cartItemsList = useAppSelector(
-    (state: { cartItem: any }) => state.cartItem
-  );
+  const [isCartOpen, setCartOpen] = useState<boolean>(false);
 
-  console.log(
-    cartItemsList.cartItems,
-    cartItemsList.cartTotal,
-    cartItemsList.quantity
-  );
-
-  const cartOpeningHandler = () => {
-    console.log('clicked');
+  const showCartHandler = (page: 'home' | 'cart') => {
+    if (page === 'home') {
+      setCartOpen(false);
+    } else {
+      setCartOpen(true);
+    }
   };
 
   return (
-    <HeaderField
-      display='flex'
-      justifyContent='space-between'
-      alignItems='center'
-    >
-      <Grid item>
-        <Typography variant='h4'>Sneakers Market Place</Typography>
-      </Grid>
-      <Grid item>
-        <Grid container onClick={cartOpeningHandler}>
-          <ShoppingCartOutlinedIcon
-            fontSize='large'
-            style={{ cursor: 'pointer' }}
-          />
-          <QuantityField>{0}</QuantityField>
-        </Grid>
-      </Grid>
-    </HeaderField>
+    <Fragment>
+      <Header showCartEvent={showCartHandler} />
+      <Content showCart={isCartOpen} />
+    </Fragment>
   );
 };
 

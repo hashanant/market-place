@@ -2,24 +2,24 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { Grid, Typography } from '@mui/material';
 import { useAppSelector } from '../../hooks/use.redux';
-import { ItemButton, QuantityField } from '../../styles/Common.styled';
+import { ItemButton, QuantityField } from '../../styles/Common.styles';
+import { priceFormatter } from '../../util/helper';
 
 type IProps = {
   itemPrice: number;
-  value: number;
-  callbackAction: (action: string) => void;
+  quantity: number;
+  callbackAction: (action: 'add' | 'remove') => void;
 };
 
 const ItemCardActions: React.FC<IProps> = (props) => {
-  const { itemPrice = 0, value, callbackAction } = props;
-  const { MIN, MAX } = useAppSelector((state: any) => state.cartItem);
-  const nf = new Intl.NumberFormat();
+  const { itemPrice = 0, quantity, callbackAction } = props;
+  const { MIN, MAX } = useAppSelector((state) => state.cartItem);
 
   return (
     <Grid container display='flex' justifyContent='space-between'>
       <Grid item>
         <Typography variant='h6' fontWeight={600}>
-          {'\u20B9 ' + nf.format(itemPrice)}
+          {priceFormatter(itemPrice)}
         </Typography>
       </Grid>
       <Grid item>
@@ -27,18 +27,18 @@ const ItemCardActions: React.FC<IProps> = (props) => {
           <ItemButton
             color='error'
             variant='outlined'
-            disabled={value === MIN}
+            disabled={quantity === MIN}
             onClick={() => {
               callbackAction('remove');
             }}
           >
             <RemoveIcon />
           </ItemButton>
-          <QuantityField color='grey'>{value}</QuantityField>
+          <QuantityField color='grey'>{quantity}</QuantityField>
           <ItemButton
             color='success'
             variant='outlined'
-            disabled={value === MAX}
+            disabled={quantity === MAX}
             onClick={() => {
               callbackAction('add');
             }}

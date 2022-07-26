@@ -6,7 +6,7 @@ import {
   yeezyFoamRNNR,
   zion2PF,
 } from '../assets';
-import { IItems } from '../types/itemType';
+import { IItems } from '../types/Common.types';
 
 const items: Array<IItems> = [
   {
