@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/market-place/static/css/main.e6c13ad2.css",
-    "main.js": "/market-place/static/js/main.f577c443.js",
+    "main.css": "/market-place/static/css/main.f86bbf6d.css",
+    "main.js": "/market-place/static/js/main.036892d9.js",
     "static/media/adidas.Yeezy.Foam.RNNR.Onyx.webp": "/market-place/static/media/adidas.Yeezy.Foam.RNNR.Onyx.ed399ea2e1010bfc8115.webp",
     "static/media/Zion.2.PF.webp": "/market-place/static/media/Zion.2.PF.dcd1ceb1008a4c32fa5f.webp",
     "static/media/SB.Zoom.Blazer.webp": "/market-place/static/media/SB.Zoom.Blazer.3cd9c56e579152e13fea.webp",
@@ -9,11 +9,11 @@
     "static/media/Jordan.5.Why.Not.webp": "/market-place/static/media/Jordan.5.Why.Not.a521a49d360ab2a579c4.webp",
     "static/media/Nike.Air.Force.1.Shadow.webp": "/market-place/static/media/Nike.Air.Force.1.Shadow.f8588afcf5815142a991.webp",
     "index.html": "/market-place/index.html",
-    "main.e6c13ad2.css.map": "/market-place/static/css/main.e6c13ad2.css.map",
-    "main.f577c443.js.map": "/market-place/static/js/main.f577c443.js.map"
+    "main.f86bbf6d.css.map": "/market-place/static/css/main.f86bbf6d.css.map",
+    "main.036892d9.js.map": "/market-place/static/js/main.036892d9.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.f577c443.js"
+    "static/css/main.f86bbf6d.css",
+    "static/js/main.036892d9.js"
   ]
 }
